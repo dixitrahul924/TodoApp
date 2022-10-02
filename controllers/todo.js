@@ -1,3 +1,4 @@
+const logger = require("../lib/logger");
 const Items = require("../Model/Item");
 
 const getItems = async (req, res) => {
@@ -6,7 +7,7 @@ const getItems = async (req, res) => {
       res.json(items);
     })
     .catch((err) => {
-      console.error(err.message);
+      logger.error(err.message);
       res.send(err.message);
     });
 };
@@ -17,7 +18,7 @@ const getItembyID = async (req, res) => {
       res.json(items);
     })
     .catch((err) => {
-      console.error(err.message);
+      logger.error(err.message);
       res.send(err.message);
     });
 };
@@ -34,7 +35,7 @@ const createItem = async (req, res) => {
       res.json(result);
     })
     .catch((err) => {
-      console.error("Error Occured", err.message);
+      logger.error("Error Occured", err.message);
       res.send(err.message);
     });
 };
@@ -45,7 +46,7 @@ const updateItem = async (req, res) => {
       res.json(result);
     })
     .catch((err) => {
-      console.error("Error Occured", err.message);
+      logger.error("Error Occured", err.message);
       res.send(err.message);
     });
 };
@@ -56,7 +57,7 @@ const deleteItem = async (req, res) => {
       res.json(result);
     })
     .catch((err) => {
-      console.error("Error Occured", err.message);
+      logger.error("Error Occured", err.message);
       res.send(err.message);
     });
 };

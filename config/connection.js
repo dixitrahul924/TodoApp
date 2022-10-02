@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const logger = require("../lib/logger");
 
 const init = () =>
   mongoose
@@ -7,8 +8,8 @@ const init = () =>
       useUnifiedTopology: true,
     })
     .then(() => {
-      console.log(" DB Connection successful");
+      logger.info(" DB Connection successful");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => logger.error(err));
 
 module.exports = { init };

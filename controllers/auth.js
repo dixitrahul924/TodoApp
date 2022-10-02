@@ -2,6 +2,7 @@ const User = require("../Model/User");
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const logger = require("../lib/logger");
 
 const registerUser = async (req, res) => {
   try {
@@ -41,7 +42,8 @@ const registerUser = async (req, res) => {
 
     res.status(201).json(user);
   } catch (err) {
-    console.error(err);
+    logger.error(err);
+
     res.status(500).send(err);
   }
 };
@@ -72,7 +74,7 @@ const loginUser = async (req, res) => {
       res.status(400).send("Invalid Credentials");
     }
   } catch (err) {
-    console.log(err);
+    logger.error(err);
   }
 };
 
