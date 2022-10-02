@@ -2,13 +2,17 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+
 const todoRoutes = require("./routes/todo");
-const { init } = require("./db/connection");
+const authRoutes = require("./routes/auth");
+
+const { init } = require("./config/connection");
 
 app.use(morgan("dev"));
 
 app.use(express.json());
 
+app.use("/", authRoutes.router);
 app.use("/", todoRoutes.router);
 
 init().then(() => {
