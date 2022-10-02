@@ -1,14 +1,18 @@
 require("dotenv").config();
 const express = require("express");
-
 const app = express();
+const morgan = require("morgan");
+const todoRoutes = require("./routes/todo");
+const { init } = require("./db/connection");
+
+app.use(morgan("dev"));
 
 app.use(express.json());
 
-app.use("/", (req, res) => {
-  res.send("hello");
-});
+app.use("/", todoRoutes.router);
 
-app.listen(3000, () => {
-  console.log(`Server is running on port 3000`);
+init().then(() => {
+  app.listen(process.env.PORT || 4000, () => {
+    console.log(`Server Started at http://localhost:${process.env.PORT}/`);
+  });
 });
